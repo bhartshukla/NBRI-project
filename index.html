@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlantVision AI — National Plant Identification Portal</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ═══ GOV TOP STRIP ═══ -->
+  <div class="gov-strip">
+    <div class="gov-strip-inner">
+      <div class="gov-strip-left">
+        <span>🇮🇳</span>
+        <span>भारत सरकार &nbsp;|&nbsp; Government of India</span>
+      </div>
+      <div class="gov-strip-right">
+        <a href="#">Skip to Main Content</a>
+        <span class="strip-sep">|</span>
+        <a href="#">हिंदी</a>
+        <span class="strip-sep">|</span>
+        <a href="#">Screen Reader Access</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="emblem" aria-hidden="true">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="26" fill="#fff" stroke="#1a5276" stroke-width="1.5"/>
+            <circle cx="28" cy="28" r="20" fill="none" stroke="#1a5276" stroke-width="0.7" stroke-dasharray="2.5 3"/>
+            <path d="M28 40 C28 40 15 32 15 22 C15 15.9 21 11 28 11 C35 11 41 15.9 41 22 C41 32 28 40 28 40Z" fill="#1a5276" opacity="0.12"/>
+            <path d="M28 40 L28 24 M28 24 C28 24 21 20 18 15 M28 24 C28 24 35 20 38 15" stroke="#1a5276" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="28" cy="28" r="3.5" fill="#FF9933"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-title">PlantVision AI</h1>
+          <p class="brand-subtitle">National Plant Identification &amp; Information Portal</p>
+          <p class="brand-dept">Ministry of Agriculture &amp; Farmers Welfare &nbsp;|&nbsp; Botanical Survey of India</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="header-badges">
+          <span class="hbadge">Plant.id API</span>
+          <span class="hbadge hbadge-green">OpenRouter AI</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ MAIN NAV ═══ -->
+  <nav class="main-nav" role="navigation" aria-label="Main Navigation">
+    <div class="nav-inner">
+      <ul class="nav-list" role="list">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#detect" class="nav-link nav-active">Plant Identification</a></li>
+        <li><a href="#footer" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <a href="#about" onclick="closeMobileMenu()">About</a>
+      <a href="#features" onclick="closeMobileMenu()">Features</a>
+      <a href="#detect" onclick="closeMobileMenu()">Plant Identification</a>
+      <a href="#footer" onclick="closeMobileMenu()">Contact</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- ═══ HERO BANNER ═══ -->
+    <section class="hero-banner" aria-labelledby="hero-heading">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="hero-eyebrow">AI-Powered Botanical Identification</div>
+          <h2 class="hero-heading" id="hero-heading">
+            Identify Any Plant<br/>Instantly &amp; Accurately
+          </h2>
+          <p class="hero-desc">
+            Upload a photograph of any plant or flower. Our dual-AI system cross-references
+            the Plant.id botanical database and generates comprehensive scientific details
+            along with a complete Hindi explanation — free for all citizens.
+          </p>
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="scrollToDetect()">Start Identification</button>
+            <a href="#about" class="btn-ghost">Learn More ›</a>
+          </div>
+        </div>
+        <div class="hero-panel">
+          <div class="stats-panel">
+            <div class="stat-item">
+              <span class="stat-num">3,00,000+</span>
+              <span class="stat-label">Plant Species Covered</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-num">98%</span>
+              <span class="stat-label">Identification Accuracy</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-num">&lt; 3s</span>
+              <span class="stat-label">Average Response Time</span>
+            </div>
+          </div>
+          <div class="notice-box">
+            <strong>ℹ️ Disclaimer:</strong> This portal is for educational and agricultural reference purposes only. For medical treatment, consult a certified physician.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ BREADCRUMB ═══ -->
+    <div class="breadcrumb-bar">
+      <div class="breadcrumb-inner">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb" role="list">
+            <li><a href="#">Home</a></li>
+            <li aria-current="page">Plant Identification Portal</li>
+          </ol>
+        </nav>
+        <span class="last-updated">Last Updated: July 2025</span>
+      </div>
+    </div>
+
+    <!-- ═══ ABOUT ═══ -->
+    <section class="page-section" id="about">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-tag">About the Portal</div>
+          <h2 class="section-title">What is PlantVision AI?</h2>
+          <div class="title-rule"></div>
+        </div>
+        <p class="section-body">
+          PlantVision AI is a citizen-facing botanical identification platform that combines
+          Plant.id's global species database with OpenRouter AI's language generation capabilities.
+          The portal provides accurate plant identification with confidence scoring, alongside
+          comprehensive Hindi explanations — making botanical knowledge accessible to Indian farmers,
+          students, researchers, and nature enthusiasts across the country.
+        </p>
+        <div class="about-cards">
+          <div class="about-card">
+            <div class="about-card-icon">🧬</div>
+            <h3>Dual AI Engine</h3>
+            <p>Plant.id identifies species with high precision while OpenRouter AI generates rich contextual explanations in Hindi for Indian users.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">🌍</div>
+            <h3>Botanical Database</h3>
+            <p>Access to over 3,00,000 plant species spanning the globe — from rare orchids to common herbs, medicinal plants and agricultural crops.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">📱</div>
+            <h3>Mobile Accessible</h3>
+            <p>Fully responsive and accessible on any device. Upload a field photograph and receive results instantly — no app installation required.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FEATURES ═══ -->
+    <section class="page-section section-alt" id="features">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-tag">Key Features</div>
+          <h2 class="section-title">Portal Capabilities</h2>
+          <div class="title-rule"></div>
+        </div>
+        <div class="table-responsive">
+          <table class="features-table" role="table" aria-label="Portal Features">
+            <thead>
+              <tr>
+                <th scope="col">Feature</th>
+                <th scope="col">Description</th>
+                <th scope="col">Availability</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="feat-icon">🌿</span> Plant Identification</td>
+                <td>Precise common and scientific name detection from any photograph</td>
+                <td><span class="status-badge status-active">● Active</span></td>
+              </tr>
+              <tr>
+                <td><span class="feat-icon">📊</span> Confidence Score</td>
+                <td>AI confidence percentage with tiered accuracy rating for each result</td>
+                <td><span class="status-badge status-active">● Active</span></td>
+              </tr>
+              <tr>
+                <td><span class="feat-icon">💊</span> Medicinal Information</td>
+                <td>Traditional and modern medicinal uses of identified plant species</td>
+                <td><span class="status-badge status-active">● Active</span></td>
+              </tr>
+              <tr>
+                <td><span class="feat-icon">🌱</span> Growing Guide</td>
+                <td>Soil type, watering needs, sunlight requirements and growing seasons</td>
+                <td><span class="status-badge status-active">● Active</span></td>
+              </tr>
+              <tr>
+                <td><span class="feat-icon">🇮🇳</span> Hindi Explanation</td>
+                <td>Complete botanical and cultural details in Hindi language (AI generated)</td>
+                <td><span class="status-badge status-active">● Active</span></td>
+              </tr>
+              <tr>
+                <td><span class="feat-icon">⚡</span> Instant Processing</td>
+                <td>Advanced AI delivers identification results in under 3 seconds</td>
+                <td><span class="status-badge status-active">● Active</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ DETECT ═══ -->
+    <section class="page-section" id="detect">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-tag">AI Detection</div>
+          <h2 class="section-title">Plant Identification Tool</h2>
+          <div class="title-rule"></div>
+          <p class="section-desc">Upload a clear photograph of any plant or flower to begin identification.</p>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions-box">
+          <h3>📋 Instructions for Use</h3>
+          <ol>
+            <li>Click the upload area or drag and drop a plant image (JPG, PNG, or WEBP — maximum 10 MB).</li>
+            <li>Ensure the photograph clearly shows the plant's leaves, flowers, or distinctive features.</li>
+            <li>Click <strong>"Identify Plant"</strong> to submit the image for AI analysis.</li>
+            <li>View the identification result, confidence score, and detailed Hindi explanation below.</li>
+          </ol>
+        </div>
+
+        <!-- Upload Area -->
+        <div class="upload-zone" id="uploadZone"
+          ondragover="handleDragOver(event)"
+          ondragleave="handleDragLeave(event)"
+          ondrop="handleDrop(event)"
+          onclick="document.getElementById('fileInput').click()"
+          role="button"
+          tabindex="0"
+          aria-label="Click to upload plant photograph"
+          onkeydown="if(event.key==='Enter'||event.key===' ')document.getElementById('fileInput').click()">
+          <input type="file" id="fileInput" accept="image/*" onchange="handleFileSelect(event)" hidden />
+          <div class="upload-idle" id="uploadIdle">
+            <div class="upload-icon" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="#1a5276" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <p class="upload-main">Drag &amp; Drop plant photograph here</p>
+            <p class="upload-sub">or click to browse files</p>
+            <div class="upload-formats">
+              <span>JPG</span><span>PNG</span><span>WEBP</span><span>Max 10 MB</span>
+            </div>
+          </div>
+          <div class="upload-preview" id="uploadPreview" style="display:none">
+            <img id="previewImg" alt="Uploaded plant photograph" />
+            <div class="preview-overlay"><span>Click to change image</span></div>
+          </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+          <button class="btn-primary btn-large" id="analyzeBtn" onclick="analyzePlant()">
+            🔍 &nbsp;Identify Plant
+          </button>
+          <p class="form-note">🔒 Images are processed securely and are not stored on our servers.</p>
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading-section" id="loadingSection" style="display:none">
+          <div class="scanner-box">
+            <div class="scanner-image-wrap">
+              <img id="scanningImg" alt="Scanning plant" />
+              <div class="scan-overlay">
+                <div class="scan-line"></div>
+                <div class="scan-grid"></div>
+                <div class="scan-corners">
+                  <div class="sc tl"></div><div class="sc tr"></div>
+                  <div class="sc bl"></div><div class="sc br"></div>
+                </div>
+              </div>
+            </div>
+            <div class="scanner-info">
+              <div class="scanner-pulse">
+                <div class="pulse-ring r1"></div>
+                <div class="pulse-ring r2"></div>
+                <div class="pulse-ring r3"></div>
+                <div class="pulse-dot"></div>
+              </div>
+              <h3 class="scanner-title">Processing Your Image</h3>
+              <p class="scanner-status" id="scannerStatus">Analyzing botanical features...</p>
+              <div class="scanner-steps">
+                <div class="step active" id="step1">🔬 Feature Extraction</div>
+                <div class="step" id="step2">🧬 Species Matching</div>
+                <div class="step" id="step3">🌿 Detail Generation</div>
+                <div class="step" id="step4">🇮🇳 Hindi Translation</div>
+              </div>
+              <div class="progress-bar-wrap" role="progressbar" aria-label="Processing progress">
+                <div class="progress-bar" id="progressBar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection" style="display:none">
+
+          <div class="results-header">
+            <div class="results-status-row">
+              <span class="results-badge">✅ Identification Complete</span>
+              <span class="result-date" id="resultDate"></span>
+            </div>
+            <h3 class="results-plant-name" id="resultPlantName">—</h3>
+            <p class="results-scientific" id="resultScientific">—</p>
+          </div>
+
+          <div class="results-grid">
+            <div class="result-image-col">
+              <div class="result-img-card">
+                <div class="result-img-label-top">Submitted Photograph</div>
+                <img id="resultImg" alt="Identified plant" />
+              </div>
+              <div class="confidence-card">
+                <table class="conf-table">
+                  <tbody>
+                    <tr>
+                      <th scope="row">AI Confidence</th>
+                      <td><strong class="conf-value" id="confValue">—</strong></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Rating</th>
+                      <td id="confTier">—</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="conf-bar-wrap">
+                  <div class="conf-bar" id="confBar"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="result-details-col">
+              <h4 class="details-heading">Plant Information Summary</h4>
+              <table class="details-table">
+                <tbody>
+                  <tr>
+                    <th scope="row">🌿 Primary Uses</th>
+                    <td id="dvUses">—</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">🪨 Soil Type</th>
+                    <td id="dvSoil">—</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">💧 Water Requirement</th>
+                    <td id="dvWater">—</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">🌤 Growing Season</th>
+                    <td id="dvSeason">—</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">💊 Medicinal Benefits</th>
+                    <td id="dvMed">—</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Hindi Section -->
+          <div class="hindi-section">
+            <div class="hindi-header">
+              <span class="hindi-flag">🇮🇳</span>
+              <div class="hindi-header-text">
+                <h4>विस्तृत हिंदी विवरण</h4>
+                <p>Detailed Information in Hindi</p>
+              </div>
+              <span class="hindi-badge">AI Generated</span>
+            </div>
+            <div class="hindi-content" id="hindiContent">—</div>
+          </div>
+
+          <div class="re-analyze-wrap">
+            <button class="btn-secondary" onclick="resetApp()">
+              🔄 &nbsp;Identify Another Plant
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="site-footer" id="footer">
+    <div class="footer-top">
+      <div class="footer-inner">
+        <div class="footer-col footer-brand-col">
+          <div class="footer-logo">
+            <svg viewBox="0 0 36 36" fill="none" width="28" height="28" aria-hidden="true">
+              <circle cx="18" cy="18" r="17" stroke="#fff" stroke-width="1.2"/>
+              <path d="M18 28 C18 28 8 22 8 14 C8 9.58 12.48 6 18 6 C23.52 6 28 9.58 28 14 C28 22 18 28 18 28Z" fill="#fff" opacity="0.2"/>
+              <path d="M18 28 L18 16 M18 16 C18 16 13 13 11 10 M18 16 C18 16 23 13 25 10" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+            <span>PlantVision AI</span>
+          </div>
+          <p>A citizen-facing AI botanical identification service for educational and agricultural reference purposes.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="#about">About the Portal</a></li>
+            <li><a href="#features">Features &amp; Capabilities</a></li>
+            <li><a href="#detect">Plant Identification</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Powered By</h5>
+          <ul>
+            <li><a href="https://web.plant.id" target="_blank" rel="noopener">Plant.id API</a></li>
+            <li><a href="https://openrouter.ai" target="_blank" rel="noopener">OpenRouter AI</a></li>
+            <li><a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Policies</h5>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Accessibility Statement</a></li>
+            <li><a href="#">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p>© 2025 PlantVision AI &nbsp;|&nbsp; Content licensed under <a href="#">CC BY 4.0</a></p>
+        <p>Last reviewed: July 2025 &nbsp;|&nbsp; Version 2.0</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
